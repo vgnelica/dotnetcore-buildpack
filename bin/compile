@@ -17,6 +17,9 @@ BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 BP_DIR=$(cd $(dirname ${0:-}); cd ..; pwd)
+echo "${BUILD_DIR}"
+echo "${CACHE_DIR}"
+echo "${ENV_DIR}"
 
 mkdir -p $BUILD_DIR/.profile.d
 cp $BP_DIR/profile/* $BUILD_DIR/.profile.d/
@@ -31,8 +34,9 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=${DOTNET_CLI_TELEMETRY_OPTOUT:-1}
 echo "Installing the dependencies"
 apt_install libunwind8 gettext
 
-echo "Installing dotnet"
+cho "Installing dotnet"
 install_dotnet $BUILD_DIR $CACHE_DIR
+
 
 export PATH="/app/dotnet:${PATH}"
 export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}"
