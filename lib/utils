@@ -3,6 +3,8 @@
 function install_dotnet() {
   # local BUILD_DIR="$1"
   # local CACHE_DIR="$2"
+  echo "${BUILD_DIR}"
+  echo "${CACHE_DIR}"
   local ZIP_NAME="dotnet-2.1.4.tar.gz"
 
   if [ ! -f $CACHE_DIR/$ZIP_NAME ]; then
@@ -14,6 +16,7 @@ function install_dotnet() {
   
   mkdir -p ${BUILD_DIR}/.heroku/dotnet && tar zxf $CACHE_DIR/$ZIP_NAME -C ${BUILD_DIR}/.heroku/dotnet
   ln -s ${BUILD_DIR}/.heroku/dotnet /app
+  ls -la ${BUILD_DIR}/.heroku/dotnet
   export PATH="$PATH:$BUILD_DIR/.heroku/dotnet"
 }
 
