@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 function install_dotnet() {
-  local BUILD_DIR="$1"
-  local CACHE_DIR="$2"
+  # local BUILD_DIR="$1"
+  # local CACHE_DIR="$2"
   local ZIP_NAME="dotnet-2.1.4.tar.gz"
 
   if [ ! -f $CACHE_DIR/$ZIP_NAME ]; then
@@ -11,9 +11,10 @@ function install_dotnet() {
   else
     echo "$ZIP_NAME from cache folder"
   fi
-
+  
   mkdir -p ${BUILD_DIR}/.heroku/dotnet && tar zxf $CACHE_DIR/$ZIP_NAME -C ${BUILD_DIR}/.heroku/dotnet
   ln -s ${BUILD_DIR}/.heroku/dotnet /app
+  export PATH="$PATH:$BUILD_DIR/.heroku/dotnet"
 }
 
 # https://github.com/ddollar/heroku-buildpack-apt
